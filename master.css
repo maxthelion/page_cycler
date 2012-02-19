@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: helvetica;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+h2 {
+  font-size: 4em;
+  text-align: center;
+}
+
+#editBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+form input {
+  font-size: 2em;
+}
+
+.urlField {
+  width: 24em;
+}
