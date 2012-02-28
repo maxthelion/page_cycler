@@ -1,8 +1,13 @@
 var timeOut = null;
 
-function fetchSettings(){
-  if (localStorage['URLData'])  
-    return JSON.parse( localStorage['URLData'] )
+function fetchSettings(page){
+  var rawData = localStorage[page + 'URLData']
+  if (rawData)  
+    return JSON.parse( rawData )
+}
+
+function saveSettings(page, data){
+  localStorage[page + 'URLData'] = JSON.stringify(data)
 }
 
 function drawMain(data){
@@ -41,7 +46,7 @@ function saveData(){
       data.push(dataPoint)
     }
   })
-  localStorage['URLData'] = JSON.stringify(data)
+  saveSettings(window.location.hash, data)
   drawMain(data)
   return false
 }
@@ -51,7 +56,7 @@ function showConfig(){
   $('#main').hide();
   $('#config').show();
   $('#urlList').empty();
-  var data = fetchSettings() || [];
+  var data = fetchSettings(window.location.hash) || [];
   for (var i=0; i < data.length; i++) {
     addListItem( data[i] )
   };
@@ -73,7 +78,7 @@ function addListItem(item){
 }
 
 $().ready(function(){
-  var data = fetchSettings()
+  var data = fetchSettings( window.location.hash )
   if (data) {
     drawMain(data)
   } else {
